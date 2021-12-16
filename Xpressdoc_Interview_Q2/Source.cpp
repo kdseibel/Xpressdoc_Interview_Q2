@@ -5,6 +5,17 @@
 
 #include<iostream>
 using namespace std;
+bool isPowerOfTwo(int n)//This is what was needed instead of a sqrt. The previous check literally did nothing as a "check" and is not the opposite of an exponent.
+{
+	//n being the modified k + 1
+	cout << "Checking if factor of 2 " << n << endl;
+	if (n == 0)
+		return false;
+
+	cout << "Ceiling " <<  ceil(log2(n)) <<"| Floor " << floor(log2(n)) << endl;
+	return (ceil(log2(n)) == floor(log2(n)));//this check determines if k a whole number or not.
+}
+
 void NumberOfSteps(int steps, int k) //function for computing which constraint should be executed
 {
 	cout << "The number given was " << k << endl;
@@ -20,15 +31,14 @@ void NumberOfSteps(int steps, int k) //function for computing which constraint s
 		}
 		else
 		{
-			cout << "k is odd \n";
-			if (((k + 1) % 2 == 0) && (sqrt(k + 1) == 0))//check if adding/subtracting will result in k being an exponent/radical of 2				This step only matters if the number will require 1 fewer step by adding first or subtracting.
+			if (isPowerOfTwo(k + 1) == true)//check if adding/subtracting will result in k being an exponent/radical of 2		This step only matters if the number will require 1 fewer step by adding first or subtracting.
 			{
 				cout << "Initializing step a) \n";
 				k = k + 1;
-				cout << k <<"\n";
+				cout << k << "\n";
 				steps += 1;
 			}
-			else 
+			else
 			{
 				cout << "Initializing step b) \n";
 				k = k - 1;
